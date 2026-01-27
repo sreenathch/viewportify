@@ -1,0 +1,110 @@
+{
+  "name": "viewportify",
+  "version": "1.0.0",
+  "description": "🖥️ The Ultimate Cross-Platform Viewport Toolkit - Consistent viewport dimensions across iOS, Android, Windows & all browsers. Solves 100vh issues, supports svh/lvh/dvh, keyboard detection, safe areas & more!",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./types/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "types",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:umd",
+    "build:cjs": "esbuild src/index.ts --bundle --platform=node --format=cjs --outfile=dist/index.js --external:react",
+    "build:esm": "esbuild src/index.ts --bundle --platform=browser --format=esm --outfile=dist/index.esm.js --external:react",
+    "build:umd": "esbuild src/index.ts --bundle --platform=browser --format=iife --global-name=Viewportify --outfile=dist/index.umd.js",
+    "build:minify": "esbuild src/index.ts --bundle --minify --platform=browser --format=iife --global-name=Viewportify --outfile=dist/index.umd.min.js",
+    "dev": "esbuild src/index.ts --bundle --platform=browser --format=esm --outfile=dist/index.esm.js --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run build:minify"
+  },
+  "keywords": [
+    "viewport",
+    "innerWidth",
+    "innerHeight",
+    "100vh",
+    "vh",
+    "vw",
+    "svh",
+    "lvh",
+    "dvh",
+    "ios",
+    "safari",
+    "mobile",
+    "responsive",
+    "screen",
+    "dimensions",
+    "breakpoints",
+    "media-query",
+    "keyboard",
+    "safe-area",
+    "pwa",
+    "touch",
+    "orientation",
+    "viewport-units",
+    "css-variables",
+    "react",
+    "hooks",
+    "typescript",
+    "cross-platform",
+    "browser",
+    "android",
+    "tablet",
+    "desktop",
+    "window-size",
+    "resize",
+    "scroll"
+  ],
+  "author": "Viewportify Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sreenathch/viewportify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sreenathch/viewportify/issues"
+  },
+  "homepage": "https://github.com/sreenathch/viewportify#readme",
+  "devDependencies": {
+    "@testing-library/react": "^14.2.0",
+    "@types/react": "^18.2.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "esbuild": "^0.20.0",
+    "jsdom": "^24.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "sideEffects": false,
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/sreenathch"
+  }
+}
