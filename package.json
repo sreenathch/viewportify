@@ -1,6 +1,6 @@
 {
   "name": "viewportify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "🖥️ The Ultimate Cross-Platform Viewport Toolkit - Consistent viewport dimensions across iOS, Android, Windows & all browsers. Solves 100vh issues, supports svh/lvh/dvh, keyboard detection, safe areas & more!",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
