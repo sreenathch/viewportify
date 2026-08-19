@@ -361,6 +361,31 @@ console.log(size); // { width, height, top, left, right, bottom, x, y }
 
 ## 🎨 CSS Variables
 
+> **⚠️ Call Viewportify once before relying on the CSS variables.**
+>
+> The variables are written to `:root` by JavaScript, so nothing populates them until Viewportify actually runs. The instance is created lazily on first use — importing the package alone does nothing (the package is marked `sideEffects: false`, so bundlers may drop it entirely if you never call in).
+>
+> If you are **only** using the CSS variables and never touch the JS API, call `initViewportify()` once during page initialization. Otherwise every `var(--vp-*)` reference silently falls back to its default.
+>
+> ```javascript
+> import { initViewportify } from 'viewportify';
+>
+> initViewportify(); // sets the variables, then keeps them updated on resize
+> ```
+>
+> Any other exported function works too (`getViewport()`, `getHeight()`, …) since they all create the instance on first use — but `initViewportify()` states the intent and lets you pass options.
+>
+> **Where to call it:**
+>
+> | Framework | Entry point |
+> |-----------|-------------|
+> | Vanilla JS | Top level of your entry script |
+> | React | Module scope in `main.tsx`, or a `useEffect` in your root component |
+> | Angular | `ngOnInit` of `AppComponent` |
+> | Vue | `main.ts` before `.mount()`, or `onMounted` in `App.vue` |
+> | Svelte | `onMount` in your root layout |
+> | Next.js / SSR | A client-side effect — the variables need a real DOM |
+
 When `setCSSVariables` is enabled (default), Viewportify sets these CSS custom properties on `:root`:
 
 ```css
